@@ -15,14 +15,9 @@ result_dict = dict(zip(keys, values))
 print("合并后的字典：")
 for key, value in result_dict.items():
     print(f"{key}: {value}")
-# 给定键值对
 keys = ["a", "b", "c"]
 values = [1, 2, 3]
-
-# 将两个列表合并为字典
 result_dict = dict(zip(keys, values))
-
-# 输出结果
 print("合并后的字典：")
 for key, value in result_dict.items():
     print(f"{key}: {value}")

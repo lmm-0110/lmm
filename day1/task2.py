@@ -40,6 +40,4 @@ def conditional_sum():
     print(f"1-10000之间满足条件的数共有 {count} 个")
     print(f"它们的和是：{total}")
     print("-" * 40)
-
-
 conditional_sum()
