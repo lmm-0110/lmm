@@ -28,9 +28,9 @@ print(my_car)  # 丰田汽车，当前速度: 30km/h
 # 测试刹车
 print("\n刹车测试:")
 my_car.brake(2)  # 刹车2次
-print(my_car)  # 丰田汽车，当前速度: 10km/h
-my_car.brake(2)  # 尝试刹车（将归零）
-print(my_car)  # 丰田汽车，当前速度: 0km/h
+print(my_car)
+my_car.brake(2)
+print(my_car)
 
 #定义ElectricCar子类
 class ElectricCar(Car):
