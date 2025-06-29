@@ -1,7 +1,6 @@
 import os
 import re
 
-
 # Windows自然排序键生成器
 def windows_natural_sort_key(filename):
     """
@@ -12,6 +11,19 @@ def windows_natural_sort_key(filename):
     convert = lambda text: text.zfill(8) if text.isdigit() else text.lower()
     return [convert(t) for t in re.split(r'(\d+)', filename)]
 
+
+def natural_sort_key(s):
+    """实现特定排序规则：数字按自然���序，但带前导零的数字排在相同值的数字之前"""
+    def convert(text):
+        if text.isdigit():
+            num_val = int(text)
+            # 如果是以0开头的数字，返回一个特殊的元组使其排在普通数字之前
+            if text.startswith('0') and len(text) > 1:
+                return (num_val - 0.5, text)
+            return (num_val, text)
+        return text.lower()
+
+    return [convert(p) for p in re.split('([0-9]+)', s)]
 
 def rename_images():
     # 定义路径 - 使用原始路径
@@ -27,7 +39,7 @@ def rename_images():
 
     # 步骤3: Windows自然排序（按文件名中的数字顺序排列）
     # 使用Windows资源管理器式的自然排序算法
-    files.sort(key=windows_natural_sort_key)
+    files.sort(key=natural_sort_key)
 
     # 步骤4: 只处理图片文件（保留原有扩展名）
     image_files = [f for f in files if os.path.isfile(os.path.join(image_folder, f))
