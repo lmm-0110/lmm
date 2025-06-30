@@ -26,3 +26,32 @@ plt.ylim(-8, 8)
 
 # 显示图像
 plt.show()
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 修正1：创建包含20个年份的数组（原代码只有1个年份）
+year = np.full(20, '2019')  # 创建20个'2019'
+
+# 生成随机月份和日期
+month = np.random.randint(1, 13, size=20).astype(str)
+day = np.random.randint(1, 31, size=20).astype(str)
+
+date = np.array([])
+for i in range(20):
+    # 修正2：正确拼接日期字符串
+    b = f"{year[i]}/{month[i]}/{day[i]}"
+    date = np.append(date, b)
+
+sales = np.random.randint(500, 2000, size=len(date))
+
+plt.figure(figsize=(12, 6))
+plt.xticks(
+    range(0, len(date), 2),
+    [f'日期:{d}' for d in date][::2],
+    rotation=45,
+    color='red'
+)
+plt.plot(date, sales, marker='o')
+plt.tight_layout()  # 自动调整布局
+plt.show()
